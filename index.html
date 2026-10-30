@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10091e">
+<title>Sapna | A Little Universe</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --pink:#ff9bcf;
+ --light:#ffe4f1;
+ --purple:#b89aff;
+ --gold:#ffe0a5;
+}
+body{
+ background:#10091e;
+ color:white;
+ font-family:Poppins,sans-serif;
+ overflow-x:hidden;
+ min-height:100vh;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+#background{
+ position:fixed;inset:0;z-index:-3;
+ background:
+ radial-gradient(ellipse at 50% 90%,#54224e 0%,transparent 55%),
+ radial-gradient(ellipse at 10% 15%,#242451 0%,transparent 50%),
+ linear-gradient(160deg,#090817,#1a102d,#0b0b1b);
+}
+#stars,#particles{
+ position:fixed;inset:0;pointer-events:none;z-index:-1;
+}
+.star{
+ position:absolute;color:white;
+ animation:twinkle 2.5s infinite alternate;
+}
+@keyframes twinkle{
+ from{opacity:.15;transform:scale(.6)}
+ to{opacity:1;transform:scale(1.2)}
+}
+header{
+ position:relative;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:18px 6%;
+ border-bottom:1px solid #ffffff15;
+ background:#10091e70;
+ backdrop-filter:blur(15px);
+ z-index:5;
+}
+.brand{
+ font-family:'DM Serif Display',serif;
+ font-size:22px;color:var(--pink);
+}
+.music-btn{
+ background:#ffffff0c;color:white;
+ border:1px solid #ffffff30;
+ border-radius:30px;padding:9px 14px;font-size:12px;
+}
+.hero{
+ min-height:88vh;display:flex;
+ flex-direction:column;align-items:center;
+ justify-content:center;text-align:center;padding:30px 18px;
+ position:relative;
+}
+.eyebrow{
+ font-size:10px;letter-spacing:5px;color:var(--gold);
+}
+.hero-rose{
+ font-size:85px;margin:25px 0 10px;
+ filter:drop-shadow(0 0 25px #ff5ba9);
+ animation:rose 4s ease-in-out infinite;
+}
+@keyframes rose{
+ 0%,100%{transform:translateY(0) rotate(-8deg)}
+ 50%{transform:translateY(-17px) rotate(8deg)}
+}
+.hero h1{
+ font-family:'DM Serif Display',serif;
+ font-size:clamp(55px,14vw,95px);
+ font-weight:normal;
+ font-style:italic;
+ color:#ffe0ee;
+ text-shadow:0 0 25px #ff66b8,0 0 65px #e63c98;
+ animation:titleIn 2s ease both;
+}
+@keyframes titleIn{
+ from{opacity:0;filter:blur(15px);transform:translateY(30px)}
+ to{opacity:1;filter:blur(0);transform:translateY(0)}
+}
+.hero-line{
+ max-width:340px;color:#e6c6db;
+ font-size:14px;line-height:2;margin:20px auto;
+}
+.primary{
+ background:linear-gradient(120deg,#e94c9a,#8c4eae);
+ border:1px solid #ffc4e4;
+ color:white;padding:14px 27px;
+ border-radius:35px;
+ box-shadow:0 0 30px #ed5ca955;
+ transition:.3s;
+}
+.primary:hover{transform:translateY(-4px);box-shadow:0 0 40px #ed5ca9}
+.scroll-note{
+ margin-top:30px;color:#c7a7c6;
+ font-size:10px;letter-spacing:3px;
+ animation:bob 2s infinite;
+}
+@keyframes bob{50%{transform:translateY(7px)}}
+
+main{max-width:850px;margin:auto;padding:20px}
+.section-head{text-align:center;margin:65px 0 25px}
+.section-head small{color:var(--gold);letter-spacing:4px;font-size:10px}
+.section-head h2{
+ font-family:'DM Serif Display',serif;
+ font-weight:normal;font-size:34px;
+ color:#ffd5e9;margin-top:10px;
+}
+.section-head p{color:#cbb7d0;font-size:12px;margin-top:8px}
+
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+}
+.card{
+ min-height:175px;
+ text-align:left;
+ padding:21px;
+ border-radius:22px;
+ border:1px solid #ffffff20;
+ background:linear-gradient(145deg,#ffffff13,#ffffff05);
+ color:white;
+ transition:.35s;
+ position:relative;
+ overflow:hidden;
+}
+.card:after{
+ content:"";position:absolute;
+ width:100px;height:100px;border-radius:50%;
+ background:#ff8ac51c;filter:blur(20px);
+ right:-35px;bottom:-35px;
+}
+.card:hover{
+ transform:translateY(-6px);
+ border-color:#ffacd6;
+ background:linear-gradient(145deg,#482340,#21162f);
+}
+.card .emoji{font-size:39px;display:block;margin-bottom:12px}
+.card h3{font-size:15px;font-weight:500}
+.card p{font-size:11px;color:#cbb7d0;margin-top:7px;line-height:1.7}
+
+.screen{
+ display:none;
+ margin:35px 0;
+ padding:25px 18px;
+ border:1px solid #ffb9dc35;
+ border-radius:25px;
+ background:linear-gradient(145deg,#29182fef,#171326f5);
+ box-shadow:0 20px 60px #0005;
+ text-align:center;
+ animation:enter .5s ease;
+}
+.screen.active{display:block}
+@keyframes enter{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
+}
+.screen h2{
+ font-family:'DM Serif Display',serif;
+ font-size:30px;font-weight:normal;
+ color:#ffd2e8;margin:10px;
+}
+.screen p{font-size:13px;color:#e0c7dc;line-height:1.9}
+.close{
+ float:right;background:transparent;
+ color:#f8cce4;border:0;font-size:22px;
+}
+.action{
+ padding:11px 20px;
+ border:1px solid #ffb5dc80;
+ border-radius:30px;
+ background:#ffffff12;color:white;
+ margin:9px 4px;
+}
+.action:hover{background:#a7447d}
+#garden{
+ min-height:180px;padding:20px;
+ display:flex;justify-content:center;
+ align-items:center;flex-wrap:wrap;gap:8px;
+}
+.flower{
+ font-size:38px;display:inline-block;
+ animation:bloom .8s cubic-bezier(.2,1.5,.5,1) both;
+}
+@keyframes bloom{
+ from{transform:scale(0) rotate(-100deg)}
+ to{transform:scale(1) rotate(0)}
+}
+.game-area{
+ position:relative;height:290px;
+ background:radial-gradient(ellipse,#40214a,#141226);
+ border:1px solid #ffffff25;border-radius:20px;
+ overflow:hidden;margin:18px 0;
+}
+.falling{
+ position:absolute;top:-45px;
+ font-size:31px;cursor:pointer;
+ animation:fall linear forwards;
+}
+@keyframes fall{to{transform:translateY(350px) rotate(360deg);opacity:.2}}
+.scoreline{display:flex;justify-content:space-around;color:#ffd4e9}
+.big-gift{font-size:100px;cursor:pointer;display:inline-block;transition:.5s}
+.big-gift:hover{transform:rotate(-12deg) scale(1.1)}
+#giftMessage,#mysteryMessage,#letterText{margin-top:18px;min-height:55px}
+.mystery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.mystery-card{
+ border:1px solid #ffacd755;
+ border-radius:16px;background:#ffffff0c;
+ min-height:110px;color:white;font-size:36px;
+}
+.mystery-card span{display:block;font-size:10px;margin-top:8px;color:#e9c5db}
+.envelope{
+ font-size:95px;display:inline-block;
+ cursor:pointer;transition:.4s;
+ filter:drop-shadow(0 0 20px #ff77bb);
+}
+.envelope:hover{transform:scale(1.12) rotate(5deg)}
+.letter{
+ display:none;margin-top:20px;
+ padding:22px;border-radius:17px;
+ background:#fff0f5;color:#572b49;
+ font-family:'DM Serif Display',serif;
+ font-size:17px;line-height:2;
+}
+#wishInput{
+ width:100%;padding:14px;border-radius:12px;
+ border:1px solid #ffadd5;
+ background:#ffffff0c;color:white;
+ outline:none;margin:15px 0;
+}
+#wishInput::placeholder{color:#c5a8bd}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
+footer{text-align:center;padding:60px 10px;color:#c3a3c3;font-size:11px;letter-spacing:3px}
+#topBtn{
+ position:fixed;bottom:15px;right:15px;
+ background:#ffffff15;border:1px solid #ffffff44;
+ color:white;border-radius:50%;width:45px;height:45px;
+}
+@media(max-width:500px){
+ .grid{gap:10px}
+ .card{padding:16px;min-height:160px}
+ .hero{min-height:83vh}
+ .mystery-grid{gap:6px}
+}
+</style>
+</head>
+
+<body>
+<div id="background"></div>
+<div id="stars"></div>
+<div id="particles"></div>
+<canvas id="confetti"></canvas>
+
+<header>
+ <div class="brand">✦ Sapna's World</div>
+ <button class="music-btn" onclick="musicToggle()" id="musicBtn">♫ Play Music</button>
+</header>
+
+<section class="hero">
+ <div class="eyebrow">A LITTLE MAGIC • A LITTLE MYSTERY</div>
+ <div class="hero-rose">🌹</div>
+ <h1>Sapna</h1>
+ <p class="hero-line">
+  Some connections are not easy to describe...
+  <br>but they make ordinary moments extraordinary.
+ </p>
+ <button class="primary" onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">
+  Discover Your World ✨
+ </button>
+ <div class="scroll-note">SCROLL TO EXPLORE ↓</div>
+</section>
+
+<main id="discover">
+ <div class="section-head">
+  <small>YOUR LITTLE ADVENTURE</small>
+  <h2>Choose Your Magic</h2>
+  <p>Every little corner has a surprise waiting for you.</p>
+ </div>
+
+ <div class="grid">
+  <button class="card" onclick="openScreen('gardenScreen')">
+   <span class="emoji">🌷</span>
+   <h3>Blooming Garden</h3>
+   <p>Make your own magical flower garden.</p>
+  </button>
+  <button class="card" onclick="openScreen('gameScreen')">
+   <span class="emoji">💗</span>
+   <h3>Heart Catcher</h3>
+   <p>A little game. Can you beat the high score?</p>
+  </button>
+  <button class="card" onclick="openScreen('mysteryScreen')">
+   <span class="emoji">🔮</span>
+   <h3>Mystery Cards</h3>
+   <p>Unlock six hidden little thoughts.</p>
+  </button>
+  <button class="card" onclick="openScreen('giftScreen')">
+   <span class="emoji">🎁</span>
+   <h3>Secret Gift</h3>
+   <p>Something is waiting inside.</p>
+  </button>
+  <button class="card" onclick="openScreen('wishScreen')">
+   <span class="emoji">🌠</span>
+   <h3>Wish Upon a Star</h3>
+   <p>Send a little wish into the universe.</p>
+  </button>
+  <button class="card" onclick="openScreen('letterScreen')">
+   <span class="emoji">💌</span>
+   <h3>Hidden Letter</h3>
+   <p>Some things are better read slowly.</p>
+  </button>
+ </div>
+
+ <!-- GARDEN -->
+ <section class="screen" id="gardenScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>🌷 The Secret Garden</h2>
+  <p>Each tap makes another flower bloom.<br>Let's make this place beautiful!</p>
+  <div id="garden">🌱</div>
+  <button class="action" onclick="growFlower()">Plant a Flower 🌸</button>
+  <button class="action" onclick="resetGarden()">Start Again</button>
+  <p id="flowerCount">Flowers: 0</p>
+ </section>
+
+ <!-- GAME -->
+ <section class="screen" id="gameScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>💗 Heart Catcher</h2>
+  <p>Catch the falling hearts before time runs out!</p>
+  <div class="scoreline">
+   <span>Score: <b id="score">0</b></span>
+   <span>Time: <b id="time">20</b>s</span>
+   <span>Best: <b id="best">0</b></span>
+  </div>
+  <div class="game-area" id="gameArea"></div>
+  <button class="action" onclick="startGame()">Start Game 🚀</button>
+  <p id="gameMessage">Ready when you are!</p>
+ </section>
+
+ <!-- MYSTERY -->
+ <section class="screen" id="mysteryScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>🔮 Mystery Cards</h2>
+  <p>Choose a card. Every card has a different surprise.</p>
+  <div class="mystery-grid" id="mysteryGrid"></div>
+  <p id="mysteryMessage">Choose your first card ✨</p>
+ </section>
+
+ <!-- GIFT -->
+ <section class="screen" id="giftScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>A Gift For You 🎁</h2>
+  <p>There is something special hiding inside...</p>
+  <div class="big-gift" id="giftBox" onclick="openGift()">🎁</div>
+  <p id="giftMessage">Tap the gift to open it!</p>
+  <button class="action" onclick="resetGift()">Close & Reset</button>
+ </section>
+
+ <!-- WISH -->
+ <section class="screen" id="wishScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>🌠 Wish Upon a Star</h2>
+  <p>Write a wish and release it into the universe.</p>
+  <input id="wishInput" placeholder="If I could wish for anything...">
+  <button class="action" onclick="sendWish()">Release My Wish ✨</button>
+  <div id="wishResult"></div>
+ </section>
+
+ <!-- LETTER -->
+ <section class="screen" id="letterScreen">
+  <button class="close" onclick="closeScreen(this)">×</button>
+  <h2>💌 A Hidden Letter</h2>
+  <p>Maybe a few words can say what a thousand messages cannot.</p>
+  <div class="envelope" onclick="openLetter()">💌</div>
+  <div class="letter" id="letterText"></div>
+ </section>
+
+</main>
+
+<footer>
+ MADE WITH CURIOSITY & A LITTLE MAGIC<br><br>
+ ✦ ENDLESS POSSIBILITIES ✦
+</footer>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// STAR UNIVERSE
+for(let i=0;i<125;i++){
+ let s=document.createElement("span");
+ s.className="star";
+ s.textContent="✦";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ s.style.fontSize=(Math.random()*9+4)+"px";
+ s.style.animationDelay=Math.random()*3+"s";
+ document.getElementById("stars").appendChild(s);
+}
+
+// FLOATING PETALS
+const petals=["🌸","✨","💗","🌷","💕"];
+function makePetal(){
+ let p=document.createElement("span");
+ p.textContent=petals[Math.floor(Math.random()*petals.length)];
+ p.style.cssText=`position:fixed;top:-35px;left:${Math.random()*100}%;
+ font-size:${15+Math.random()*20}px;pointer-events:none;z-index:1;
+ animation:petalFall ${6+Math.random()*5}s linear forwards`;
+ document.getElementById("particles").appendChild(p);
+ setTimeout(()=>p.remove(),12000);
+}
+const style=document.createElement("style");
+style.textContent="@keyframes petalFall{to{transform:translateY(110vh) rotate(600deg);opacity:0}}";
+document.head.appendChild(style);
+setInterval(makePetal,900);
+
+// SCREEN NAVIGATION
+function openScreen(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.getElementById(id).scrollIntoView({behavior:"smooth",block:"center"});
+}
+function closeScreen(btn){
+ btn.closest(".screen").classList.remove("active");
+}
+
+// FLOWER GARDEN
+let flowerCount=0;
+const flowerList=["🌷","🌸","🌺","🌼","🌻","💐","🪻","🌹","🦋"];
+function growFlower(){
+ let f=document.createElement("span");
+ f.className="flower";
+ f.textContent=flowerList[Math.floor(Math.random()*flowerList.length)];
+ document.getElementById("garden").appendChild(f);
+ flowerCount++;
+ document.getElementById("flowerCount").textContent="Flowers: "+flowerCount;
+}
+function resetGarden(){
+ document.getElementById("garden").innerHTML="🌱";
+ flowerCount=0;
+ document.getElementById("flowerCount").textContent="Flowers: 0";
+}
+
+// HEART CATCHER GAME
+let gameActive=false,gameScore=0,seconds=20;
+let spawnTimer,clockTimer;
+let best=Number(localStorage.getItem("sapnaBest")||0);
+document.getElementById("best").textContent=best;
+
+function startGame(){
+ if(gameActive)return;
+ gameActive=true;
+ gameScore=0;seconds=20;
+ document.getElementById("score").textContent=0;
+ document.getElementById("time").textContent=20;
+ document.getElementById("gameMessage").textContent="Catch the hearts! 💗";
+ const area=document.getElementById("gameArea");
+ area.innerHTML="";
+ spawnTimer=setInterval(()=>{
+  if(!gameActive)return;
+  const h=document.createElement("span");
+  h.className="falling";
+  h.textContent=["💗","💖","❤️","💕","💓"][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*85+"%";
+  h.style.animationDuration=(2.5+Math.random()*1.5)+"s";
+  h.onclick=()=>{
+   if(!gameActive)return;
+   gameScore++;
+   document.getElementById("score").textContent=gameScore;
+   h.remove();
+  };
+  area.appendChild(h);
+  setTimeout(()=>h.remove(),4500);
+ },450);
+ clockTimer=setInterval(()=>{
+  seconds--;
+  document.getElementById("time").textContent=seconds;
+  if(seconds<=0)endGame();
+ },1000);
+}
+function endGame(){
+ gameActive=false;
+ clearInterval(spawnTimer);
+ clearInterval(clockTimer);
+ document.getElementById("gameArea").innerHTML="";
+ if(gameScore>best){
+  best=gameScore;
+  localStorage.setItem("sapnaBest",best);
+  document.getElementById("best").textContent=best;
+ }
+ document.getElementById("gameMessage").textContent=
+ "Time's up! You caught "+gameScore+" hearts! 🏆";
+}
+
+// MYSTERY CARDS
+const thoughts=[
+ "Your smile makes ordinary moments special. 🌸",
+ "A little kindness can change someone's day. ✨",
+ "Some friendships are like sunshine. ☀️",
+ "Keep your curiosity alive. The world is waiting. 🌍",
+ "You are allowed to dream as big as the universe. 🌌",
+ "Some feelings are beautiful without needing a name. 💗"
+];
+const mysteryGrid=document.getElementById("mysteryGrid");
+thoughts.forEach((t,i)=>{
+ let b=document.createElement("button");
+ b.className="mystery-card";
+ b.innerHTML="❔<span>SECRET "+(i+1)+"</span>";
+ b.onclick=()=>{
+  b.innerHTML="✨<span>UNLOCKED</span>";
+  document.getElementById("mysteryMessage").textContent=t;
+ };
+ mysteryGrid.appendChild(b);
+});
+
+// GIFT AND CONFETTI
+let giftOpened=false;
+function openGift(){
+ if(giftOpened)return;
+ giftOpened=true;
+ document.getElementById("giftBox").textContent="🎉";
+ document.getElementById("giftMessage").innerHTML=
+ "Surprise unlocked! 💖<br><br>"+
+ "A thousand smiles, a million dreams,<br>"+
+ "and beautiful days ahead. 🌷";
+ confettiBurst();
+}
+function resetGift(){
+ giftOpened=false;
+ document.getElementById("giftBox").textContent="🎁";
+ document.getElementById("giftMessage").textContent="Tap the gift to open it!";
+}
+function confettiBurst(){
+ const canvas=document.getElementById("confetti");
+ const c=canvas.getContext("2d");
+ canvas.width=innerWidth;canvas.height=innerHeight;
+ let bits=Array.from({length:130},()=>({
+  x:Math.random()*canvas.width,y:-20-Math.random()*canvas.height/2,
+  size:3+Math.random()*5,v:2+Math.random()*5,
+  color:["#ff8fc9","#ffe6a7","#a9eaff","#c7a6ff"][Math.floor(Math.random()*4)]
+ }));
+ let frame=0;
+ function draw(){
+  c.clearRect(0,0,canvas.width,canvas.height);
+  bits.forEach(b=>{
+   c.fillStyle=b.color;c.fillRect(b.x,b.y,b.size,b.size);
+   b.y+=b.v;b.x+=Math.sin(frame/10+b.y/30)*1.5;
+  });
+  frame++;
+  if(frame<120)requestAnimationFrame(draw);
+  else c.clearRect(0,0,canvas.width,canvas.height);
+ }
+ draw();
+}
+
+// WISH
+function sendWish(){
+ const input=document.getElementById("wishInput");
+ if(!input.value.trim()){
+  document.getElementById("wishResult").textContent="Write your wish first 🌠";
+  return;
+ }
+ document.getElementById("wishResult").innerHTML=
+ "✨ Your wish has joined the universe.<br>May beautiful things find their way to you. 🌌";
+ input.value="";
+ confettiBurst();
+}
+
+// LETTER
+let letterOpened=false;
+const letterMessage="Dear Sapna,\\n\\nSome people bring a little extra colour into everyday life. Some conversations become memories without even trying.\\n\\nWhatever this connection is, may it always have laughter, kindness, trust and countless beautiful moments.\\n\\nKeep smiling. Keep dreaming. Keep being you. 🌸\\n\\n— Someone who wanted to make you smile ❤️";
+function openLetter(){
+ if(letterOpened)return;
+ letterOpened=true;
+ const box=document.getElementById("letterText");
+ box.style.display="block";
+ box.style.whiteSpace="pre-line";
+ let i=0;
+ function type(){
+  if(i<letterMessage.length){
+   box.textContent+=letterMessage.charAt(i++);
+   setTimeout(type,35);
+  }
+ }
+ type();
+}
+
+// ORIGINAL AMBIENT MELODY
+let audio=null,musicOn=false,musicTimer=null,noteIndex=0;
+const notes=[261.63,329.63,392,329.63,293.66,349.23,440,392,261.63,329.63,392,523.25];
+function playNote(freq){
+ if(!audio||!musicOn)return;
+ const osc=audio.createOscillator();
+ const gain=audio.createGain();
+ osc.type="sine";osc.frequency.value=freq;
+ gain.gain.setValueAtTime(.0001,audio.currentTime);
+ gain.gain.linearRampToValueAtTime(.035,audio.currentTime+.25);
+ gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+2);
+ osc.connect(gain);gain.connect(audio.destination);
+ osc.start();osc.stop(audio.currentTime+2.1);
+}
+async function musicToggle(){
+ if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();
+ await audio.resume();
+ musicOn=!musicOn;
+ document.getElementById("musicBtn").textContent=
+ musicOn?"♫ Music Playing":"♫ Play Music";
+ if(musicOn&&!musicTimer){
+  musicTimer=setInterval(()=>{
+   if(musicOn)playNote(notes[noteIndex++%notes.length]);
+  },650);
+ }
+}
+</script>
+</body>
+  </html>
